@@ -1,0 +1,256 @@
+:root {
+    --color-primary: #ffffff;
+    --color-secondary: #cccccc;
+    --color-background: #000000;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: linear-gradient(to bottom, var(--color-overlay), transparent);
+    padding: 1rem;
+    backdrop-filter: blur(8px);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+main {
+    padding-top: 5rem;
+    min-height: 100vh;
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.artwork {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--color-background);
+}
+
+.artwork img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+
+.artwork:hover img {
+    transform: scale(1.05);
+}
+
+.artwork-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, var(--color-overlay));
+}
+
+.artwork-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.artwork-details h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.artwork-details p {
+    color: var(--color-secondary);
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-overlay);
+    color: var(--color-primary);
+    padding: 1rem;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity var(--transition-speed), background-color var(--transition-speed);
+}
+
+.artwork:hover .nav-arrow {
+    opacity: 1;
+}
+
+.nav-arrow:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-arrow.left {
+    left: 1rem;
+}
+
+.nav-arrow.right {
+    right: 1rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.icon-button {
+    color: var(--color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed);
+}
+
+.icon-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.info-panel {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+.info-panel.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value.goals {
+    color: #fbbf24;
+}
+
+.stat-value.assists {
+    color: #60a5fa;
+}
+
+.stat-value.matches {
+    color: #34d399;
+}
+
+.stat-label {
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+}
+
+.description {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.likes {
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+}
+
+.progress-bar {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.progress-dot {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    transition: background-color var(--transition-speed);
+}
+
+.progress-dot.active {
+    background: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+    .artwork-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .nav-arrow {
+        padding: 0.75rem;
+    }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn var(--transition-speed) ease-out;
+}
+
+.icon-button.liked svg {
+    fill: #ef4444;
+    stroke: #ef4444;
+}
